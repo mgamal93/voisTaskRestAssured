@@ -14,6 +14,6 @@ Feature:
 
     Given the user perform get request for "http://www.colourlovers.com/api/patterns"
     When  user make filter with number of views to be greater than 4000
-    Then the result count should be 25
+    Then the result count should be 20
 
 

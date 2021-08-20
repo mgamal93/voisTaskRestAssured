@@ -24,10 +24,6 @@ public class ColourLoverStepDef {
                 .header("Accept-Encoding", "gzip, deflate, br")
                 .when().get(baseUrl);
 
-
-//        responseBody=response.getBody().asString();
-//        System.out.println(response.statusCode());
-//        System.out.println(responseBody);
     }
 
     @Then("^the response code should be (\\d+)$")
@@ -45,14 +41,9 @@ public class ColourLoverStepDef {
         System.out.println("list : " + colorsViewsStr);
 
         colorsViewsArr = toIntArray(colorsViewsStr);
-        resultCount = 0;
-
-        for (int i = 0; i < colorsViewsArr.length; i++) {
-            if (filter_value <= colorsViewsArr[i]) {
-                resultCount++;
-            }
-        }
+        resultCount = getGreaterThan(filter_value);
         System.out.println("Count of the elements that are greater than the given value are:" + resultCount);
+
 
     }
 
@@ -64,6 +55,17 @@ public class ColourLoverStepDef {
             result[i] = Integer.parseInt(split[i]);
         }
         return result;
+    }
+
+    private int getGreaterThan(int filter_value) {
+        int count = 0;
+        for (int i = 0; i < colorsViewsArr.length; i++) {
+            if (filter_value <= colorsViewsArr[i]) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     @Then("^the result count should be (\\d+)$")
